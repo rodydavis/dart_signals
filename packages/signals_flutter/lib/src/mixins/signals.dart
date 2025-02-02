@@ -105,7 +105,7 @@ mixin SignalsMixin<T extends StatefulWidget> on State<T> {
   ///
   /// ```dart
   /// final movieId = signal('id');
-  /// late final movie = computedFrom(args, ([movieId]) => fetchMovie(args.first));
+  /// late final movie = computedFrom([movieId], (args) => fetchMovie(args.first));
   /// ```
   ///
   /// Since all dependencies are passed in as arguments there is no need to worry about calling the signals before any async gaps with await.
@@ -118,6 +118,111 @@ mixin SignalsMixin<T extends StatefulWidget> on State<T> {
   }) {
     return _bindLocal(computedFrom<S, A>(
       signals,
+      fn,
+      initialValue: initialValue,
+      debugLabel: debugLabel,
+      lazy: lazy,
+    ));
+  }
+
+  /// [createComputedFrom] for one signal.
+  FutureSignal<S> createComputedFrom1<S, A>(
+    ReadonlySignal<A> signal1,
+    Future<S> Function(A value1) fn, {
+    S? initialValue,
+    String? debugLabel,
+    bool lazy = true,
+  }) {
+    return _bindLocal(computedFrom1<S, A>(
+      signal1,
+      fn,
+      initialValue: initialValue,
+      debugLabel: debugLabel,
+      lazy: lazy,
+    ));
+  }
+
+  /// [createComputedFrom] for two signals.
+  FutureSignal<S> createComputedFrom2<S, A, B>(
+    ReadonlySignal<A> signal1,
+    ReadonlySignal<B> signal2,
+    Future<S> Function(A value1, B value2) fn, {
+    S? initialValue,
+    String? debugLabel,
+    bool lazy = true,
+  }) {
+    return _bindLocal(computedFrom2<S, A, B>(
+      signal1,
+      signal2,
+      fn,
+      initialValue: initialValue,
+      debugLabel: debugLabel,
+      lazy: lazy,
+    ));
+  }
+
+  /// [createComputedFrom] for three signals.
+  FutureSignal<S> createComputedFrom3<S, A, B, C>(
+    ReadonlySignal<A> signal1,
+    ReadonlySignal<B> signal2,
+    ReadonlySignal<C> signal3,
+    Future<S> Function(A value1, B value2, C value3) fn, {
+    S? initialValue,
+    String? debugLabel,
+    bool lazy = true,
+  }) {
+    return _bindLocal(computedFrom3<S, A, B, C>(
+      signal1,
+      signal2,
+      signal3,
+      fn,
+      initialValue: initialValue,
+      debugLabel: debugLabel,
+      lazy: lazy,
+    ));
+  }
+
+  /// [createComputedFrom] for four signals.
+  FutureSignal<S> createComputedFrom4<S, A, B, C, D>(
+    ReadonlySignal<A> signal1,
+    ReadonlySignal<B> signal2,
+    ReadonlySignal<C> signal3,
+    ReadonlySignal<D> signal4,
+    Future<S> Function(A value1, B value2, C value3, D value4) fn, {
+    S? initialValue,
+    String? debugLabel,
+    bool lazy = true,
+  }) {
+    return _bindLocal(computedFrom4<S, A, B, C, D>(
+      signal1,
+      signal2,
+      signal3,
+      signal4,
+      fn,
+      initialValue: initialValue,
+      debugLabel: debugLabel,
+      lazy: lazy,
+    ));
+  }
+
+  /// [createComputedFrom] for five signals.
+  FutureSignal<S> createComputedFrom5<S, A, B, C, D, E>(
+    ReadonlySignal<A> signal1,
+    ReadonlySignal<B> signal2,
+    ReadonlySignal<C> signal3,
+    ReadonlySignal<D> signal4,
+    ReadonlySignal<E> signal5,
+    Future<S> Function(A value1, B value2, C value3, D value, E value5) fn, {
+    S? initialValue,
+    String? debugLabel,
+    bool lazy = true,
+  }) {
+    return _bindLocal(computedFrom5<S, A, B, C, D, E>(
+      signal1,
+      signal2,
+      signal3,
+      signal4,
+      signal5,
       fn,
       initialValue: initialValue,
       debugLabel: debugLabel,
