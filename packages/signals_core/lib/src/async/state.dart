@@ -183,6 +183,7 @@ sealed class AsyncState<T> {
   }
 
   /// Create a state with a value that is refreshing
+  @Deprecated("Use `AsyncState.dataReloading` instead.")
   factory AsyncState.dataRefreshing(T data) {
     return AsyncDataRefreshing<T>(data);
   }
@@ -198,6 +199,7 @@ sealed class AsyncState<T> {
   }
 
   /// Create a state with an error that is refreshing
+  @Deprecated("Use `AsyncState.errorReloading` instead.")
   factory AsyncState.errorRefreshing(Object error, [StackTrace? stackTrace]) {
     return AsyncErrorRefreshing<T>(error, stackTrace ?? StackTrace.current);
   }
@@ -223,6 +225,7 @@ sealed class AsyncState<T> {
 
   /// Returns true if the state is refreshing with a loading flag,
   ///  has a value or error and is not the loading state
+  @Deprecated("Use `isReloading` instead.")
   bool get isRefreshing;
 
   /// Returns true if the state is reloading with having a value or error,
@@ -346,6 +349,7 @@ class AsyncDataReloading<T> extends AsyncData<T> implements AsyncLoading<T> {
 
 /// A loading state with a value. Signals the query conditions that led to the data
 /// has remained the same and is being refreshed
+@Deprecated("Use `AsyncDataReloading` instead.")
 class AsyncDataRefreshing<T> extends AsyncData<T> implements AsyncLoading<T> {
   /// Create a state with a value that is refreshing
   const AsyncDataRefreshing(super.data);
@@ -354,6 +358,7 @@ class AsyncDataRefreshing<T> extends AsyncData<T> implements AsyncLoading<T> {
   bool get isLoading => true;
 
   @override
+  @Deprecated("Use `isReloading` instead.")
   bool get isRefreshing => true;
 
   @override
@@ -381,6 +386,7 @@ class AsyncData<T> extends AsyncState<T> {
   bool get isLoading => false;
 
   @override
+  @Deprecated("Use `isReloading` instead.")
   bool get isRefreshing => false;
 
   @override
@@ -434,6 +440,7 @@ class AsyncErrorReloading<T> extends AsyncError<T> implements AsyncLoading<T> {
 
 /// A loading state with an error. Signal the query conditions that led to the error
 /// has remained the same and is being refreshed.
+@Deprecated("Use `AsyncErrorReloading` instead.")
 class AsyncErrorRefreshing<T> extends AsyncError<T> implements AsyncLoading<T> {
   /// Create a state with an error that is refreshing
   const AsyncErrorRefreshing(super.error, super.stackTrace);
@@ -442,6 +449,7 @@ class AsyncErrorRefreshing<T> extends AsyncError<T> implements AsyncLoading<T> {
   bool get isLoading => true;
 
   @override
+  @Deprecated("Use `isReloading` instead.")
   bool get isRefreshing => true;
 
   @override
@@ -471,6 +479,7 @@ class AsyncError<T> extends AsyncState<T> {
   bool get isLoading => false;
 
   @override
+  @Deprecated("Use `isReloading` instead.")
   bool get isRefreshing => false;
 
   @override
@@ -520,6 +529,7 @@ class AsyncLoading<T> extends AsyncState<T> {
   bool get isLoading => true;
 
   @override
+  @Deprecated("Use `isReloading` instead.")
   bool get isRefreshing => false;
 
   @override

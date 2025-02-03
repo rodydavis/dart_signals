@@ -318,6 +318,7 @@ class StreamSignal<T> extends AsyncSignal<T> {
   }
 
   @override
+  @Deprecated("Use `reload` instead.")
   Future<void> refresh() async {
     super.refresh();
     _stream.recompute();
