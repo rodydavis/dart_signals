@@ -152,7 +152,7 @@ void main() {
         expect(value, true);
       });
     });
-    
+
     group('pattern matching', () {
       test('loading', () {
         final s = AsyncState<int>.loading();
