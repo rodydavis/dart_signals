@@ -240,6 +240,7 @@ class AsyncSignal<T> extends Signal<AsyncState<T>>
   }
 
   /// Refresh the future
+  @Deprecated("Use `reload` instead.")
   Future<void> refresh() async {
     value = switch (value) {
       AsyncData<T> data => AsyncDataRefreshing<T>(data.value),

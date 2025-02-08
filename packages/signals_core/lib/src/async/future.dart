@@ -182,6 +182,7 @@ class FutureSignal<T> extends StreamSignal<T> {
   }) : super(() => fn().asStream(), cancelOnError: true);
 
   @override
+  @Deprecated("Use `reload` instead.")
   Future<void> refresh() async {
     await super.refresh();
     await future;
